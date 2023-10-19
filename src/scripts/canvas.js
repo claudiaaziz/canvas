@@ -1,6 +1,7 @@
 class Canvas {
   constructor() {
     this.canvas = document.getElementById("canvas");
+    this.colorButtons = document.querySelectorAll(".colorButton");
 
     this.setupCanvas();
     this.ctx = this.canvas.getContext("2d");
@@ -10,6 +11,12 @@ class Canvas {
     this.canvas.addEventListener("mousemove", this.draw.bind(this));
     this.canvas.addEventListener("mouseup", this.stopDrawing.bind(this));
     this.canvas.addEventListener("mouseout", this.stopDrawing.bind(this));
+
+    this.colorButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        this.currentColor = button.style.backgroundColor;
+      });
+    });
   }
 
   setupCanvas() {
@@ -26,14 +33,19 @@ class Canvas {
   startDrawing(e) {
     this.isDrawing = true;
     this.ctx.beginPath();
-    this.ctx.moveTo(e.clientX - this.canvas.offsetLeft, e.clientY - this.canvas.offsetTop);
-    this.draw(e)
+    this.ctx.moveTo(
+      e.clientX - this.canvas.offsetLeft,
+      e.clientY - this.canvas.offsetTop
+    );
+    this.draw(e);
   }
 
   draw(e) {
     if (!this.isDrawing) return;
-    this.ctx.lineTo(e.clientX - this.canvas.offsetLeft, e.clientY - this.canvas.offsetTop);
-    this.ctx.stroke()
+    this.ctx.lineTo(e.clientX - this.canvas.offsetLeft,e.clientY - this.canvas.offsetTop
+    );
+    this.ctx.stroke();
+    this.ctx.strokeStyle = this.currentColor; 
   }
 
   stopDrawing() {
