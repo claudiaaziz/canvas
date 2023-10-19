@@ -1,6 +1,7 @@
-import Example from "./scripts/example";
+import Canvas from "./scripts/canvas";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const main = document.getElementById("main");
-  new Example(main);
+  new Canvas();
 });
+
+

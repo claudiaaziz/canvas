@@ -1,5 +1,8 @@
-@import "./styles/example.scss";
+@import "./styles/canvas.scss";
 
-#main {
-  color: purple;
+* {
+  margin: 0px;
+  padding: 0px;
+  // box-sizing: border-box;
+  background-color: pink;
 }
