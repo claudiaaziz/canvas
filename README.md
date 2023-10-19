@@ -1,5 +1,5 @@
 # Canvas
-Canvas is a drawing app that allows users to create digital art through a variety of features, including an expansive color palette, brush types/sizes/patterns, and more!
+Canvas is a drawing app that allows users to create digital art through a variety of features, including an expansive color palette, brush types/ sizes/ patterns, and more!
 
 ## In Canvas, users will be able to:
 - Choose from a palette of colors via a color picker or color buttons.
