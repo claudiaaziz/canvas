@@ -15,6 +15,8 @@ class Canvas {
 
     this.clearBtn = document.getElementById("clear");
     this.clearBtn.addEventListener("click", () => this.clear());
+
+    this.setupUndoBtn()
   }
 
   setupCanvas() {
@@ -51,7 +53,18 @@ class Canvas {
     });
   }
 
+  setupUndoBtn() {
+    this.drawnPaths = [];
+    this.undoBtn = document.getElementById("undo");
+    this.undoBtn.addEventListener("click", () => this.undo());
+  }
+
   startDrawing(e) {
+    // clear the stack when a new drawing begins
+    if (!this.isDrawing) {
+      this.currentPath = [];
+    }
+
     this.isDrawing = true;
     this.ctx.beginPath();
     this.ctx.moveTo(
@@ -62,23 +75,62 @@ class Canvas {
 
   draw(e) {
     if (!this.isDrawing) return;
-    this.ctx.lineTo(
-      e.clientX - this.canvas.offsetLeft,
-      e.clientY - this.canvas.offsetTop
-    );
+
+    const x = e.clientX - this.canvas.offsetLeft;
+    const y = e.clientY - this.canvas.offsetTop;
+
+    this.ctx.lineTo(x, y);
+
+    // styling
     this.ctx.lineCap = "round";
-    this.ctx.lineWidth = 10;
+    this.ctx.lineWidth = 5;
     this.ctx.strokeStyle = this.currentColor;
+
     this.ctx.stroke();
+
+    // store the current point in the drawing path
+    this.currentPath.push({ x, y, color: this.currentColor });
   }
 
   stopDrawing() {
+    // save the current path to the stack
+    if (this.isDrawing) this.drawnPaths.push(this.currentPath);
     this.isDrawing = false;
   }
 
   clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.canvas.style.backgroundColor = "white";
+  }
+
+  undo() {
+    if (this.drawnPaths.length > 0) {
+      // remove the last drawn path from the stack
+      this.drawnPaths.pop();
+
+      // // clear the canvas first
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      // then redraw the remaining paths
+      this.drawnPaths.forEach((path) => this.redrawPath(path));
+    }
+  }
+
+  redrawPath(path) {
+    path.forEach((point, index) => {
+      if (index === 0) {
+        // Move to the starting point of the path
+        this.ctx.beginPath();
+        this.ctx.moveTo(point.x, point.y);
+      } else {
+        // Draw a line to the next point
+        this.ctx.lineTo(point.x, point.y);
+        this.ctx.lineCap = "round";
+        this.ctx.lineWidth = 5;
+        this.ctx.strokeStyle = point.color;
+        this.ctx.stroke();
+      }
+    });
   }
 
   changeBackgroundColor() {
