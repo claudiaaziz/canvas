@@ -2,6 +2,7 @@ class Canvas {
   constructor() {
     this.canvas = document.getElementById("canvas");
     this.colorButtons = document.querySelectorAll(".colorButton");
+    this.colorInput = document.querySelector("input[type=color]")
 
     this.setupCanvas();
     this.ctx = this.canvas.getContext("2d");
@@ -17,6 +18,10 @@ class Canvas {
         this.currentColor = button.style.backgroundColor;
       });
     });
+
+    this.colorInput.addEventListener("input", (e) => {
+      this.currentColor = e.target.value
+    })
   }
 
   setupCanvas() {
