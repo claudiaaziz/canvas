@@ -1,3 +1,3 @@
-#canvas{border:2px solid #000;background-color:#fff}*{margin:0px;padding:0px;background-color:pink}.colorButton{height:50px;width:50px;border-radius:50%}
+#canvas{border:2px solid #000;background-color:#fff;cursor:crosshair}.colorButton,input[type=color]{height:50px;width:50px;cursor:pointer;border-radius:50%;border-color:#fff}input[type=color]{background-color:rgba(0,0,0,0);border:none}*{margin:0px;padding:0px;background-color:pink}
 
 /*# sourceMappingURL=main.css.map*/

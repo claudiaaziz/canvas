@@ -5,8 +5,16 @@ class Canvas {
     this.ctx = this.canvas.getContext("2d");
     this.isDrawing = false;
 
-    this.setupEventListeners()
-    this.setupColorHandeling()
+    this.setupDrawingEventListeners();
+    this.setupColorHandeling();
+
+    this.backgroundInput = document.getElementById("background-color-picker");
+    this.backgroundInput.addEventListener("input", () =>
+      this.changeBackgroundColor()
+    );
+
+    this.clearBtn = document.getElementById("clear");
+    this.clearBtn.addEventListener("click", () => this.clear());
   }
 
   setupCanvas() {
@@ -20,7 +28,7 @@ class Canvas {
     this.canvas.width = window.innerWidth;
   }
 
-  setupEventListeners() {
+  setupDrawingEventListeners() {
     this.canvas.addEventListener("mousedown", this.startDrawing.bind(this));
     this.canvas.addEventListener("mousemove", this.draw.bind(this));
     this.canvas.addEventListener("mouseup", this.stopDrawing.bind(this));
@@ -28,9 +36,9 @@ class Canvas {
   }
 
   setupColorHandeling() {
-    // if a color was selected..
+    // if a color has been selected..
     this.colorButtons = document.querySelectorAll(".colorButton");
-    this.colorInput = document.querySelector("input[type=color]");
+    this.colorInput = document.getElementById("color-picker");
 
     this.colorButtons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -46,15 +54,21 @@ class Canvas {
   startDrawing(e) {
     this.isDrawing = true;
     this.ctx.beginPath();
-    this.ctx.moveTo(e.clientX - this.canvas.offsetLeft, e.clientY - this.canvas.offsetTop);
-    // this.draw(e); 
+    this.ctx.moveTo(
+      e.clientX - this.canvas.offsetLeft,
+      e.clientY - this.canvas.offsetTop
+    );
   }
 
   draw(e) {
     if (!this.isDrawing) return;
-    this.ctx.lineTo(e.clientX - this.canvas.offsetLeft,e.clientY - this.canvas.offsetTop
+    this.ctx.lineTo(
+      e.clientX - this.canvas.offsetLeft,
+      e.clientY - this.canvas.offsetTop
     );
-    this.ctx.strokeStyle = this.currentColor; 
+    this.ctx.lineCap = "round";
+    this.ctx.lineWidth = 10;
+    this.ctx.strokeStyle = this.currentColor;
     this.ctx.stroke();
   }
 
@@ -62,9 +76,14 @@ class Canvas {
     this.isDrawing = false;
   }
 
-  // clear() {
+  clear() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.canvas.style.backgroundColor = "white";
+  }
 
-  // }
+  changeBackgroundColor() {
+    this.canvas.style.backgroundColor = this.backgroundInput.value;
+  }
 }
 
 export default Canvas;
