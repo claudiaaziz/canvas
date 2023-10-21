@@ -3,7 +3,7 @@ class Canvas {
     this.setupCanvas();
     this.setupCanvasProportions();
     this.setupDrawingEventListeners();
-    this.setupColorHandeling();
+    this.setupColorHandling();
     this.setupUndoBtn();
     this.setupRedoBtn();
     this.setupClearBtn();
@@ -28,13 +28,13 @@ class Canvas {
   }
 
   setupDrawingEventListeners() {
-    this.canvas.addEventListener("mousedown", this.startDrawing.bind(this));
-    this.canvas.addEventListener("mousemove", this.draw.bind(this));
-    this.canvas.addEventListener("mouseup", this.stopDrawing.bind(this));
-    this.canvas.addEventListener("mouseout", this.stopDrawing.bind(this));
+    this.canvas.addEventListener("mousedown", (e) => this.startDrawing(e));
+    this.canvas.addEventListener("mousemove", (e) => this.draw(e));
+    this.canvas.addEventListener("mouseup", () => this.stopDrawing());
+    this.canvas.addEventListener("mouseout", () => this.stopDrawing());
   }
 
-  setupColorHandeling() {
+  setupColorHandling() {
     // if a brush color has been selected..
     this.colorBtns = document.querySelectorAll(".color-btn");
     this.brushColorPicker = document.getElementById("color-picker");
@@ -76,9 +76,10 @@ class Canvas {
 
   // drawing actions
   startDrawing(e) {
-    // clear the stack when a new drawing begins
+    // clear the stacks when a new drawing begins
     if (!this.isDrawing) {
       this.currentPath = [];
+      this.redoStack = [];
     }
 
     this.isDrawing = true;
@@ -137,24 +138,17 @@ class Canvas {
   undo() {
     // if there are paths in the stack
     if (this.drawnPaths.length > 0) {
-      // clear the entire canvas (to prep for redraw)
+      // clear canvas (to prep for redraw)
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       // remove (undo) last drawn path from the stack
       const undonePath = this.drawnPaths.pop();
-
       // push the undone path to redo stack
       this.redoStack.push(undonePath);
 
-      // redraw all paths with the correct color
+      // redraw all paths that are still in the stack with the correct color
       this.drawnPaths.forEach((path) => this.redrawPath(path));
-
-      // return the undone path to be used in the redo method
-      return undonePath;
     }
-
-    // if there are no paths to undo, return null 
-    return null;
   }
 
   redrawPath(path, isUndo = true) {
@@ -168,7 +162,9 @@ class Canvas {
         // draw a line to the next point
         this.ctx.lineTo(point.x, point.y);
 
+        // set brush styling color based on whether it's an undo or not
         this.setBrushStyling(isUndo ? point.color : this.currentColor);
+
         this.ctx.stroke();
       }
     });
@@ -177,7 +173,7 @@ class Canvas {
   redo() {
     // if there are paths in the redo stack
     if (this.redoStack.length > 0) {
-      // clear the entire canvas (to prep for redraw)
+      // clear canvas (to prep for redraw)
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       // remove (redo) last undone path from the redo stack
@@ -188,13 +184,7 @@ class Canvas {
 
       // redraw all paths with the correct color
       this.drawnPaths.forEach((path) => this.redrawPath(path));
-
-      // return the redone path to be used if needed
-      return redonePath;
     }
-
-    // if there are no paths to redo, return null 
-    return null;
   }
 }
 
