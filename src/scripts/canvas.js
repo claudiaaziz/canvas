@@ -1,25 +1,20 @@
 class Canvas {
   constructor() {
-    this.canvas = document.getElementById("canvas");
     this.setupCanvas();
-    this.ctx = this.canvas.getContext("2d");
-    this.isDrawing = false;
-
+    this.setupCanvasProportions();
     this.setupDrawingEventListeners();
     this.setupColorHandeling();
-
-    this.backgroundInput = document.getElementById("background-color-picker");
-    this.backgroundInput.addEventListener("input", () =>
-      this.changeBackgroundColor()
-    );
-
-    this.clearBtn = document.getElementById("clear");
-    this.clearBtn.addEventListener("click", () => this.clear());
-
     this.setupUndoBtn();
+    this.setupClearBtn();
   }
 
   setupCanvas() {
+    this.canvas = document.getElementById("canvas");
+    this.ctx = this.canvas.getContext("2d");
+    this.isDrawing = false;
+  }
+
+  setupCanvasProportions() {
     const topMargin = 100;
     const bottomMargin = 100;
 
@@ -38,25 +33,37 @@ class Canvas {
   }
 
   setupColorHandeling() {
-    // if a color has been selected..
-    this.colorButtons = document.querySelectorAll(".colorButton");
-    this.colorInput = document.getElementById("color-picker");
+    // if a brush color has been selected..
+    this.colorBtns = document.querySelectorAll(".color-btn");
+    this.brushColorPicker = document.getElementById("color-picker");
 
-    this.colorButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        this.currentColor = button.style.backgroundColor;
+    this.colorBtns.forEach((colorbtn) => {
+      colorbtn.addEventListener("click", () => {
+        this.currentColor = colorbtn.style.backgroundColor;
       });
     });
 
-    this.colorInput.addEventListener("input", (e) => {
-      this.currentColor = e.target.value;
+    this.brushColorPicker.addEventListener("input", () => {
+      this.currentColor = this.brushColorPicker.value;
     });
+
+    // if a bg color has been selected..
+    this.bgColorPicker = document.getElementById("background-color-picker");
+    this.bgColorPicker.addEventListener(
+      "input",
+      () => (this.canvas.style.backgroundColor = this.bgColorPicker.value)
+    );
   }
 
   setupUndoBtn() {
     this.drawnPaths = [];
     this.undoBtn = document.getElementById("undo");
     this.undoBtn.addEventListener("click", () => this.undo());
+  }
+
+  setupClearBtn() {
+    this.clearBtn = document.getElementById("clear");
+    this.clearBtn.addEventListener("click", () => this.clear());
   }
 
   startDrawing(e) {
@@ -66,11 +73,16 @@ class Canvas {
     }
 
     this.isDrawing = true;
+
+    // Begin a new path in the canvas ctx & move to the initial drawing position
     this.ctx.beginPath();
-    this.ctx.moveTo(
-      e.clientX - this.canvas.offsetLeft,
-      e.clientY - this.canvas.offsetTop
-    );
+
+    // Calculate the adjusted mouse coordinates relative to the canvas
+    const canvasMouseX = e.clientX - this.canvas.offsetLeft;
+    const canvasMouseY = e.clientY - this.canvas.offsetTop;
+
+    // Move the brush to the adjusted mouse coordinates
+    this.ctx.moveTo(canvasMouseX, canvasMouseY);
   }
 
   draw(e) {
@@ -104,14 +116,14 @@ class Canvas {
   }
 
   undo() {
+    // Clear the entire canvas
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Pop the last drawn path from the stack
     if (this.drawnPaths.length > 0) {
-      // remove the last drawn path from the stack
       this.drawnPaths.pop();
 
-      // // clear the canvas first
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-      // then redraw the remaining paths
+      // Redraw all paths with the correct colors
       this.drawnPaths.forEach((path) => this.redrawPath(path));
     }
   }
@@ -131,10 +143,6 @@ class Canvas {
         this.ctx.stroke();
       }
     });
-  }
-
-  changeBackgroundColor() {
-    this.canvas.style.backgroundColor = this.backgroundInput.value;
   }
 }
 
