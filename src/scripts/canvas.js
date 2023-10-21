@@ -3,6 +3,7 @@ class Canvas {
     this.setupCanvas();
     this.setupCanvasProportions();
     this.setupDrawingEventListeners();
+    this.setupBrushSize();
     this.setupColorHandling();
     this.setupUndoBtn();
     this.setupRedoBtn();
@@ -32,6 +33,12 @@ class Canvas {
     this.canvas.addEventListener("mousemove", (e) => this.draw(e));
     this.canvas.addEventListener("mouseup", () => this.stopDrawing());
     this.canvas.addEventListener("mouseout", () => this.stopDrawing());
+  }
+
+  setupBrushSize() {
+    this.brushSizeInput = document.getElementById("brush-size");
+    this.brushSizeInput.addEventListener("input", () => this.updateBrushSize());
+    this.currentBrushSize = 5;
   }
 
   setupColorHandling() {
@@ -111,7 +118,12 @@ class Canvas {
     this.ctx.stroke();
 
     // store the current point in the drawing path
-    this.currentPath.push({ x: mouseX, y: mouseY, color: this.currentColor });
+    this.currentPath.push({
+      x: mouseX,
+      y: mouseY,
+      color: this.currentColor,
+      brushSize: this.currentBrushSize,
+    });
   }
 
   stopDrawing() {
@@ -121,10 +133,15 @@ class Canvas {
     }
   }
 
-  setBrushStyling(color = this.currentColor) {
+  setBrushStyling(color = this.currentColor, brushSize = this.currentBrushSize) {
     this.ctx.lineCap = "round";
-    this.ctx.lineWidth = 5;
+    this.ctx.lineWidth = brushSize;
     this.ctx.strokeStyle = color;
+  }
+
+  updateBrushSize() {
+    this.currentBrushSize = parseInt(this.brushSizeInput.value);
+    this.setBrushStyling();
   }
 
   // btn actions
@@ -163,7 +180,7 @@ class Canvas {
         this.ctx.lineTo(point.x, point.y);
 
         // set brush styling color based on whether it's an undo or not
-        this.setBrushStyling(isUndo ? point.color : this.currentColor);
+        this.setBrushStyling(isUndo ? point.color : this.currentColor, point.brushSize);
 
         this.ctx.stroke();
       }
