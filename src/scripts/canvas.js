@@ -95,10 +95,7 @@ class Canvas {
     // connect the current drawing position to the new position
     this.ctx.lineTo(mouseX, mouseY);
 
-    // styling
-    this.ctx.lineCap = "round";
-    this.ctx.lineWidth = 5;
-    this.ctx.strokeStyle = this.currentColor;
+    this.setBrushStyling();
 
     // draw the line on the canvas
     this.ctx.stroke();
@@ -111,6 +108,12 @@ class Canvas {
     // if currently drawing, save the current path to the stack (for undo feature)
     if (this.isDrawing) this.drawnPaths.push(this.currentPath);
     this.isDrawing = false;
+  }
+
+  setBrushStyling(color = this.currentColor) {
+    this.ctx.lineCap = "round";
+    this.ctx.lineWidth = 5;
+    this.ctx.strokeStyle = color;
   }
 
   clear() {
@@ -134,20 +137,15 @@ class Canvas {
 
   redrawPath(path) {
     path.forEach((point, idx) => {
-      // if it's the starting point of the path
       if (idx === 0) {
-        // move to the starting point 
+        // move to the starting point
         this.ctx.beginPath();
         this.ctx.moveTo(point.x, point.y);
       } else {
         // draw a line to the next point
         this.ctx.lineTo(point.x, point.y);
 
-        // styling 
-        this.ctx.lineCap = "round";
-        this.ctx.lineWidth = 5;
-        this.ctx.strokeStyle = point.color;
-
+        this.setBrushStyling(point.color);
         this.ctx.stroke();
       }
     });
