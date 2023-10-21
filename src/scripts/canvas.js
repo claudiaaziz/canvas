@@ -74,38 +74,41 @@ class Canvas {
 
     this.isDrawing = true;
 
-    // Begin a new path in the canvas ctx & move to the initial drawing position
+    // begin a new path in the canvas ctx & move to the initial drawing position
     this.ctx.beginPath();
 
-    // Calculate the adjusted mouse coordinates relative to the canvas
+    // calculate the adjusted mouse coordinates relative to the canvas
     const canvasMouseX = e.clientX - this.canvas.offsetLeft;
     const canvasMouseY = e.clientY - this.canvas.offsetTop;
 
-    // Move the brush to the adjusted mouse coordinates
+    // move the brush to the adjusted mouse coordinates
     this.ctx.moveTo(canvasMouseX, canvasMouseY);
   }
 
   draw(e) {
     if (!this.isDrawing) return;
 
-    const x = e.clientX - this.canvas.offsetLeft;
-    const y = e.clientY - this.canvas.offsetTop;
+    // calculate the adjusted mouse coordinates relative to the canvas
+    const mouseX = e.clientX - this.canvas.offsetLeft;
+    const mouseY = e.clientY - this.canvas.offsetTop;
 
-    this.ctx.lineTo(x, y);
+    // connect the current drawing position to the new position
+    this.ctx.lineTo(mouseX, mouseY);
 
     // styling
     this.ctx.lineCap = "round";
     this.ctx.lineWidth = 5;
     this.ctx.strokeStyle = this.currentColor;
 
+    // draw the line on the canvas
     this.ctx.stroke();
 
     // store the current point in the drawing path
-    this.currentPath.push({ x, y, color: this.currentColor });
+    this.currentPath.push({ x: mouseX, y: mouseY, color: this.currentColor });
   }
 
   stopDrawing() {
-    // save the current path to the stack
+    // if currently drawing, save the current path to the stack (for undo feature)
     if (this.isDrawing) this.drawnPaths.push(this.currentPath);
     this.isDrawing = false;
   }
@@ -116,30 +119,35 @@ class Canvas {
   }
 
   undo() {
-    // Clear the entire canvas
+    // clear the entire canvas (to prep for redraw)
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // Pop the last drawn path from the stack
+    // if there are paths in the stack
     if (this.drawnPaths.length > 0) {
+      // remove (undo) last drawn path from the stack
       this.drawnPaths.pop();
 
-      // Redraw all paths with the correct colors
+      // redraw all paths with the correct colors
       this.drawnPaths.forEach((path) => this.redrawPath(path));
     }
   }
 
   redrawPath(path) {
-    path.forEach((point, index) => {
-      if (index === 0) {
-        // Move to the starting point of the path
+    path.forEach((point, idx) => {
+      // if it's the starting point of the path
+      if (idx === 0) {
+        // move to the starting point 
         this.ctx.beginPath();
         this.ctx.moveTo(point.x, point.y);
       } else {
-        // Draw a line to the next point
+        // draw a line to the next point
         this.ctx.lineTo(point.x, point.y);
+
+        // styling 
         this.ctx.lineCap = "round";
         this.ctx.lineWidth = 5;
         this.ctx.strokeStyle = point.color;
+
         this.ctx.stroke();
       }
     });
