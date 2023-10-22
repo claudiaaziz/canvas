@@ -34,3 +34,17 @@ button:hover {
   background-color: black;
 }
 
+.color-btn,
+input[type="color"] {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid pink;
+  margin: 0 5px;
+}
+
+input[type="color"] {
+  background-color: transparent;
+  border: none;
+}
