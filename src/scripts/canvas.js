@@ -5,6 +5,7 @@ class Canvas {
     this.setupDrawingEventListeners();
     this.setupBrushSize();
     this.setupColorHandling();
+    this.setupEraser();
     this.setupUndoBtn();
     this.setupRedoBtn();
     this.setupClearBtn();
@@ -64,6 +65,16 @@ class Canvas {
     );
   }
 
+  setupClearBtn() {
+    this.clearBtn = document.getElementById("clear");
+    this.clearBtn.addEventListener("click", () => this.clear());
+  }
+
+  setupEraser() {
+    this.eraserCheckbox = document.getElementById("eraser");
+    this.eraserCheckbox.addEventListener("change", () => this.erase());
+  }
+
   setupUndoBtn() {
     this.drawnPaths = [];
     this.undoBtn = document.getElementById("undo");
@@ -74,11 +85,6 @@ class Canvas {
     this.redoStack = [];
     this.redoBtn = document.getElementById("redo");
     this.redoBtn.addEventListener("click", () => this.redo());
-  }
-
-  setupClearBtn() {
-    this.clearBtn = document.getElementById("clear");
-    this.clearBtn.addEventListener("click", () => this.clear());
   }
 
   // // drawing actions
@@ -122,7 +128,12 @@ class Canvas {
     // connect the current drawing position to the new position
     this.ctx.lineTo(mouseX, mouseY);
 
-    this.setBrushStyling();
+    // Set brush styling based on whether eraser is active
+    const eraserColor = this.eraserCheckbox.checked
+      ? this.bgColorPicker.value
+      : this.currentColor;
+
+    this.setBrushStyling(eraserColor, this.currentBrushSize);
 
     // draw the line on the canvas
     this.ctx.stroke();
@@ -131,7 +142,7 @@ class Canvas {
     this.currentPath.push({
       x: mouseX,
       y: mouseY,
-      color: this.currentColor,
+      color: eraserColor,
       brushSize: this.currentBrushSize,
     });
   }
@@ -163,6 +174,13 @@ class Canvas {
     this.canvas.style.backgroundColor = "white";
     this.redoStack = [];
     this.drawnPaths = [];
+  }
+
+  erase() {
+    if (this.eraserCheckbox.checked) {
+      // If eraser is selected, set color to background
+      this.currentColor = this.bgColorPicker.value;
+    }
   }
 
   undo() {
