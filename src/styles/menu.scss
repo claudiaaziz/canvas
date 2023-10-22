@@ -1,6 +1,5 @@
 #menu {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-around;
   width: 100%;
@@ -10,30 +9,7 @@
   padding: 20px;
 }
 
-label {
-  color: white;
-  margin-right: 10px;
-}
-
-#brush-size {
-  width: 100px;
-}
-
-button {
-  background-color: pink;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  transition: 0.5s;
-  background-color: black;
-}
-
+// colors
 .color-btn,
 input[type="color"] {
   height: 40px;
@@ -45,6 +21,31 @@ input[type="color"] {
 }
 
 input[type="color"] {
+  padding: 0;
   background-color: transparent;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: 2px solid pink;
+  border-radius: 50%;
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
   border: none;
 }
+
+button {
+  background-color: pink;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  transition: 0.5s;
+  background-color: black;
+}
+

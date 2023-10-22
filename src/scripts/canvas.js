@@ -36,7 +36,7 @@ class Canvas {
   }
 
   setupBrushSize() {
-    this.brushSizeInput = document.getElementById("brush-size");
+    this.brushSizeInput = document.getElementById("size-slider");
     this.brushSizeInput.addEventListener("input", () => this.updateBrushSize());
     this.currentBrushSize = 5;
   }
