@@ -1,5 +1,7 @@
 class Canvas {
   constructor() {
+
+
     this.setupCanvas();
     this.setupCanvasProportions();
     this.setupDrawingEventListeners();
@@ -43,6 +45,8 @@ class Canvas {
   }
 
   setupColorHandling() {
+    this.currentColor = "black";
+    
     // if a brush color has been selected..
     this.colorBtns = document.querySelectorAll(".color-btn");
     this.brushColorPicker = document.getElementById("color-picker");
