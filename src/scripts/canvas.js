@@ -81,25 +81,35 @@ class Canvas {
     this.clearBtn.addEventListener("click", () => this.clear());
   }
 
-  // drawing actions
+  // // drawing actions
   startDrawing(e) {
-    // clear the stacks when a new drawing begins
     if (!this.isDrawing) {
+      // clear the stacks when a new drawing begins
       this.currentPath = [];
       this.redoStack = [];
+      this.isDrawing = true;
     }
-
-    this.isDrawing = true;
-
-    // begin a new path in the canvas ctx & move to initial drawing pos
-    this.ctx.beginPath();
 
     // calculate the adjusted mouse coordinates relative to the canvas
     const canvasMouseX = e.clientX - this.canvas.offsetLeft;
     const canvasMouseY = e.clientY - this.canvas.offsetTop;
 
+    // begin a new path in the canvas ctx & move to initial drawing pos
+    this.ctx.beginPath();
+
     // move the brush to the adjusted mouse coordinates
     this.ctx.moveTo(canvasMouseX, canvasMouseY);
+
+    // store the starting point in the drawing path
+    this.currentPath.push({
+      x: canvasMouseX,
+      y: canvasMouseY,
+      color: this.currentColor,
+      brushSize: this.currentBrushSize,
+    });
+
+    // draw a dot at the starting point
+    this.draw(e);
   }
 
   draw(e) {
@@ -133,7 +143,10 @@ class Canvas {
     }
   }
 
-  setBrushStyling(color = this.currentColor, brushSize = this.currentBrushSize) {
+  setBrushStyling(
+    color = this.currentColor,
+    brushSize = this.currentBrushSize
+  ) {
     this.ctx.lineCap = "round";
     this.ctx.lineWidth = brushSize;
     this.ctx.strokeStyle = color;
@@ -180,7 +193,10 @@ class Canvas {
         this.ctx.lineTo(point.x, point.y);
 
         // set brush styling color based on whether it's an undo or not
-        this.setBrushStyling(isUndo ? point.color : this.currentColor, point.brushSize);
+        this.setBrushStyling(
+          isUndo ? point.color : this.currentColor,
+          point.brushSize
+        );
 
         this.ctx.stroke();
       }
