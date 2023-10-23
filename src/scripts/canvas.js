@@ -74,7 +74,6 @@ class Canvas {
 
   setupEraser() {
     this.eraserCheckbox = document.getElementById("eraser");
-    this.eraserCheckbox.addEventListener("change", () => this.erase());
   }
 
   setupUndoBtn() {
@@ -130,12 +129,12 @@ class Canvas {
     // connect the current drawing position to the new position
     this.ctx.lineTo(mouseX, mouseY);
 
-    // Set brush styling based on whether eraser is active
-    const eraserColor = this.eraserCheckbox.checked
+    // Set brush styling based on whether eraser or brush is checked
+    const color = this.eraserCheckbox.checked
       ? this.bgColorPicker.value
       : this.currentColor;
 
-    this.setBrushStyling(eraserColor, this.currentBrushSize);
+    this.setBrushStyling(color, this.currentBrushSize);
 
     // draw the line on the canvas
     this.ctx.stroke();
@@ -144,7 +143,7 @@ class Canvas {
     this.currentPath.push({
       x: mouseX,
       y: mouseY,
-      color: eraserColor,
+      color: color,
       brushSize: this.currentBrushSize,
     });
   }
