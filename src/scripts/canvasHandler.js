@@ -1,18 +1,23 @@
-import ColorHandler from "./colorHandler"; 
+import BrushHandler from "./brushHandler";
+import ColorHandler from "./colorHandler";
 import DrawingHandler from "./drawingHandler";
 
-class Canvas {
+class CanvasHandler {
   constructor() {
     this.setupCanvas();
     this.setupCanvasProportions();
-    this.setupBrushSize();
     this.setupEraser();
     this.setupUndoBtn();
     this.setupRedoBtn();
     this.setupClearBtn();
 
-    this.colorHandler = new ColorHandler(this)
-    this.drawingHandler = new DrawingHandler(this, this.colorHandler)
+    this.colorHandler = new ColorHandler(this);
+    this.brushHandler = new BrushHandler(this, this.colorHandler);
+    this.drawingHandler = new DrawingHandler(
+      this,
+      this.colorHandler,
+      this.brushHandler
+    );
   }
 
   // setting up the canvas
@@ -31,12 +36,6 @@ class Canvas {
 
     this.canvas.height = window.innerHeight - topMargin - bottomMargin;
     this.canvas.width = window.innerWidth;
-  }
-
-  setupBrushSize() {
-    this.brushSizeInput = document.getElementById("size-slider");
-    this.brushSizeInput.addEventListener("input", () => this.updateBrushSize());
-    this.currentBrushSize = 5;
   }
 
   setupClearBtn() {
@@ -58,20 +57,6 @@ class Canvas {
     this.redoStack = [];
     this.redoBtn = document.getElementById("redo");
     this.redoBtn.addEventListener("click", () => this.redo());
-  }
-
-  setBrushStyling(
-    color = this.currentColor,
-    brushSize = this.currentBrushSize
-  ) {
-    this.ctx.lineCap = "round";
-    this.ctx.lineWidth = brushSize;
-    this.ctx.strokeStyle = color;
-  }
-
-  updateBrushSize() {
-    this.currentBrushSize = parseInt(this.brushSizeInput.value);
-    this.setBrushStyling();
   }
 
   // btn actions
@@ -110,8 +95,8 @@ class Canvas {
         this.ctx.lineTo(point.x, point.y);
 
         // set brush styling based on point clr & brush size
-        if (path.isErase) point.color = this.colorHandler.bgColorPicker.value
-        this.setBrushStyling(point.color, point.brushSize);
+        if (path.isErase) point.color = this.colorHandler.bgColorPicker.value;
+        this.brushHandler.setBrushStyling(point.color, point.brushSize);
 
         this.ctx.stroke();
       }
@@ -126,7 +111,6 @@ class Canvas {
 
       // remove (redo) last undone path from the redo stack
       const redonePath = this.drawingHandler.redoStack.pop();
-      debugger
       // push the redone path to drawnPaths stack
       this.drawnPaths.push(redonePath);
 
@@ -136,4 +120,4 @@ class Canvas {
   }
 }
 
-export default Canvas;
+export default CanvasHandler;

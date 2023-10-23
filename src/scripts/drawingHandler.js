@@ -1,8 +1,9 @@
 class DrawingHandler {
-  constructor(canvasHandler, colorHandler) {
+  constructor(canvasHandler, colorHandler, brushHandler) {
     this.canvasHandler = canvasHandler
     this.canvas = this.canvasHandler.canvas
     this.colorHandler = colorHandler
+    this.brushHandler = brushHandler
     this.setupDrawingEventListeners()
   }
 
@@ -37,7 +38,7 @@ class DrawingHandler {
       x: canvasMouseX,
       y: canvasMouseY,
       color: this.colorHandler.currentColor,
-      brushSize: this.canvasHandler.currentBrushSize,
+      brushSize: this.brushHandler.currentBrushSize,
     });
 
     // draw a dot at the starting point
@@ -59,7 +60,7 @@ class DrawingHandler {
       ? this.colorHandler.bgColorPicker.value
       : this.colorHandler.currentColor;
 
-    this.canvasHandler.setBrushStyling(color, this.canvasHandler.currentBrushSize);
+    this.brushHandler.setBrushStyling(color, this.brushHandler.currentBrushSize);
 
     // draw the line on the canvas
     this.canvasHandler.ctx.stroke();
@@ -69,7 +70,7 @@ class DrawingHandler {
       x: mouseX,
       y: mouseY,
       color: color,
-      brushSize: this.canvasHandler.currentBrushSize,
+      brushSize: this.brushHandler.currentBrushSize,
     });
   }
 
