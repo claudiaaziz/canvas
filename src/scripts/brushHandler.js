@@ -1,8 +1,8 @@
-class Brush {
+class BrushHandler {
   // dotted brush, glitter brush?
   constructor() {
     
   }
 }
 
-export default Brush;
+export default BrushHandler;
