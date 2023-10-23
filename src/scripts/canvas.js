@@ -1,7 +1,5 @@
 class Canvas {
   constructor() {
-
-
     this.setupCanvas();
     this.setupCanvasProportions();
     this.setupDrawingEventListeners();
@@ -46,7 +44,7 @@ class Canvas {
 
   setupColorHandling() {
     this.currentColor = "black";
-    
+
     // if a brush color has been selected..
     this.colorBtns = document.querySelectorAll(".color-btn");
     this.brushColorPicker = document.getElementById("color-picker");
@@ -198,12 +196,12 @@ class Canvas {
       // push the undone path to redo stack
       this.redoStack.push(undonePath);
 
-      // redraw all paths that are still in the stack with the correct color
+      // redraw all paths that are still in the stack
       this.drawnPaths.forEach((path) => this.redrawPath(path));
     }
   }
 
-  redrawPath(path, isUndo = true) {
+  redrawPath(path) {
     path.forEach((point, idx) => {
       // if it's the starting point of the path
       if (idx === 0) {
@@ -214,11 +212,8 @@ class Canvas {
         // draw a line to the next point
         this.ctx.lineTo(point.x, point.y);
 
-        // set brush styling color based on whether it's an undo or not
-        this.setBrushStyling(
-          isUndo ? point.color : this.currentColor,
-          point.brushSize
-        );
+        // set brush styling based on point clr & brush size
+        this.setBrushStyling(point.color, point.brushSize);
 
         this.ctx.stroke();
       }
