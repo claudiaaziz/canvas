@@ -26,11 +26,13 @@
     <input type="color" id="color-picker" value="#f5d9f2">
     <input type="color" id="background-color-picker" value="#FFFFFF">
     <label for="background-color-picker">Bg Color</label>
-    <!-- brush & erase size slider -->
+    <!-- tools -->
     <input type="range" id="size-slider" min="1" max="30" value="5">
+    <input type="radio" id="brush" name="tool" checked>
+    <label for="brush"><img src="assets/menu icons/brush.png" alt=""></label>
+    <input type="radio" id="eraser" name="tool">
+    <label for="eraser"><img src="assets/menu icons/eraser.png" alt=""></label>
     <!-- btns -->
-    <input type="checkbox" id="eraser">
-    <label for="eraser">Eraser</label>
     <button id="undo">Undo</button>
     <button id="redo">Redo</button>
     <button id="clear">X</button>

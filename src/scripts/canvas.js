@@ -178,13 +178,6 @@ class Canvas {
     this.drawnPaths = [];
   }
 
-  erase() {
-    if (this.eraserCheckbox.checked) {
-      // If eraser is selected, set color to background
-      this.currentColor = this.bgColorPicker.value;
-    }
-  }
-
   undo() {
     // if there are paths in the stack
     if (this.drawnPaths.length > 0) {
