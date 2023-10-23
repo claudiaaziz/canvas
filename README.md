@@ -18,13 +18,11 @@ Canvas is a drawing app that allows users to create digital art through a variet
   - Links to GitHub repo for this project & my LinkedIn
 - Canvas takes up the majority of the screen
 - Bottom Section Contains:
-  - Brushes
-  - Color Picker
-  - Buttons
-    - Eraser
-    - Undo Button
-    - Predefined Shape Selector
-    - Clear Button
+  - Color Picker (for brush & background color)
+  - Icons for brush (selected by default), eraser, background color
+  - Size slider for brush & eraser
+  - Undo, redo and clear button
+  - Predefined Shape Selector
 
 ## Technologies, Libraries, APIs
 - The Canvas API to render the canvas.
