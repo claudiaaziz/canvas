@@ -27,7 +27,10 @@ class ColorHandler {
       "input",
       () => {
         const drawnPaths = this.canvasHandler.drawnPaths
+        const redoStack = this.canvasHandler.redoStack
         this.canvasHandler.clear()
+        this.canvasHandler.drawnPaths = drawnPaths
+        this.canvasHandler.redoStack = redoStack
         drawnPaths.forEach((path) => this.canvasHandler.redrawPath(path));
         this.canvasHandler.canvas.style.backgroundColor = this.bgColorPicker.value;
       }
