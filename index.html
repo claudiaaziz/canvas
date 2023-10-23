@@ -8,6 +8,7 @@
   <script src="./dist/main.js" defer></script>
   <title>Canvas</title>
   <link rel="icon" href="./assets/tab-icon.png" />
+  <img src="./" alt="">
 </head>
 
 <body>
@@ -29,9 +30,10 @@
     <!-- tools -->
     <input type="range" id="size-slider" min="1" max="30" value="5">
     <input type="radio" id="brush" name="tool" checked>
-    <label for="brush"><img src="assets/menu icons/brush.png" alt=""></label>
+    <label for="brush" class="tool-icon"><img src="assets/tab-icon.png" alt=""></label>
     <input type="radio" id="eraser" name="tool">
-    <label for="eraser"><img src="assets/menu icons/eraser.png" alt=""></label>
+    <label for="eraser" class="tool-icon"><img src="assets/menu icons/not-active-eraser.png" alt=""></label>
+
     <!-- btns -->
     <button id="undo">Undo</button>
     <button id="redo">Redo</button>

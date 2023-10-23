@@ -1,8 +1,8 @@
 import Canvas from "./scripts/canvas";
-import Brush from "./scripts/brush";
+import ToolIcon from "./scripts/toolIcon";
 
 document.addEventListener("DOMContentLoaded", () => {
   new Canvas();
+  new ToolIcon();
 });
-
 
