@@ -1,14 +1,17 @@
+import ColorHandler from "./colorHandler"; 
+
 class Canvas {
   constructor() {
     this.setupCanvas();
     this.setupCanvasProportions();
     this.setupDrawingEventListeners();
     this.setupBrushSize();
-    this.setupColorHandling();
     this.setupEraser();
     this.setupUndoBtn();
     this.setupRedoBtn();
     this.setupClearBtn();
+
+    this.colorHandler = new ColorHandler(this)
   }
 
   // setting up the canvas
@@ -40,31 +43,6 @@ class Canvas {
     this.brushSizeInput = document.getElementById("size-slider");
     this.brushSizeInput.addEventListener("input", () => this.updateBrushSize());
     this.currentBrushSize = 5;
-  }
-
-  setupColorHandling() {
-    this.currentColor = "black";
-
-    // if a brush color has been selected..
-    this.colorBtns = document.querySelectorAll(".color-btn");
-    this.brushColorPicker = document.getElementById("color-picker");
-
-    this.colorBtns.forEach((colorbtn) => {
-      colorbtn.addEventListener("click", () => {
-        this.currentColor = colorbtn.style.backgroundColor;
-      });
-    });
-
-    this.brushColorPicker.addEventListener("input", () => {
-      this.currentColor = this.brushColorPicker.value;
-    });
-
-    // if a bg color has been selected..
-    this.bgColorPicker = document.getElementById("background-color-picker");
-    this.bgColorPicker.addEventListener(
-      "input",
-      () => (this.canvas.style.backgroundColor = this.bgColorPicker.value)
-    );
   }
 
   setupClearBtn() {
@@ -131,8 +109,8 @@ class Canvas {
 
     // Set brush styling based on whether eraser or brush is checked
     const color = this.eraserCheckbox.checked
-      ? this.bgColorPicker.value
-      : this.currentColor;
+      ? this.colorHandler.bgColorPicker.value
+      : this.colorHandler.currentColor;
 
     this.setBrushStyling(color, this.currentBrushSize);
 
@@ -149,10 +127,11 @@ class Canvas {
   }
 
   stopDrawing() {
-    if (this.isDrawing) {
-      this.drawnPaths.push(this.currentPath); // if currently drawing, save the current path to the stack (for undo feature)
-      this.isDrawing = false;
-    }
+    if (this.eraserCheckbox.checked) this.currentPath.isErase = true
+      if (this.isDrawing) {
+        this.drawnPaths.push(this.currentPath); // if currently drawing, save the current path to the stack (for undo feature)
+        this.isDrawing = false;
+      }
   }
 
   setBrushStyling(
@@ -205,6 +184,7 @@ class Canvas {
         this.ctx.lineTo(point.x, point.y);
 
         // set brush styling based on point clr & brush size
+        if (path.isErase) point.color = this.colorHandler.bgColorPicker.value
         this.setBrushStyling(point.color, point.brushSize);
 
         this.ctx.stroke();
