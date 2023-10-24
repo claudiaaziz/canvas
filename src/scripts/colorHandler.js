@@ -8,14 +8,7 @@ class ColorHandler {
     this.currentColor = "black";
 
     // if a brush color has been selected..
-    this.colorBtns = document.querySelectorAll(".color-btn");
     this.brushColorPicker = document.getElementById("color-picker");
-
-    this.colorBtns.forEach((colorbtn) => {
-      colorbtn.addEventListener("click", () => {
-        this.currentColor = colorbtn.style.backgroundColor;
-      });
-    });
 
     this.brushColorPicker.addEventListener("input", () => {
       this.currentColor = this.brushColorPicker.value;
