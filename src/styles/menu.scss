@@ -11,6 +11,24 @@
   cursor: pointer;
 }
 
+button {
+  background-color: pink;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+}
+
+button img {
+  max-height: 100%;
+}
+
+button:hover {
+  transition: 0.5s;
+  background-color: black;
+}
+
 // colors
 input[type="color"] {
   height: 40px;
@@ -32,6 +50,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   border: none;
 }
 
+// tools
 input[type="radio"] {
   display: none;
 }
@@ -46,21 +65,22 @@ input[type="radio"]+label img:hover {
   transform: scale(1.1);
 }
 
-button {
-  background-color: pink;
-  color: white;
-  padding: 10px;
-  border: none;
+// size slider
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 8px;
+  background: linear-gradient(to right, rgb(215, 190, 208), pink);
   border-radius: 5px;
-  height: 40px;
 }
 
-button img {
-  max-height: 100%;
-}
 
-button:hover {
-  transition: 0.5s;
-  background-color: black;
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
 }
 
