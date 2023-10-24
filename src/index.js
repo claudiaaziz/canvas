@@ -5,3 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   new CanvasHandler();
   new ToolIcon();
 });
+
+
+
+
+
+
+
+
