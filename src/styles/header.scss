@@ -1,11 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
-
 header {
   padding: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header h1 {
   font-family: 'Allura', cursive;
   font-size: 4em;
-  color: pink
+  color: pink;
 }
+
+.links a {
+  margin-left: 20px;
+}
+
+.links img {
+  height: 45px;
+}
+
