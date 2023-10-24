@@ -1,7 +1,6 @@
 class DrawingHandler {
-  constructor(canvasHandler, colorHandler) {
+  constructor(canvasHandler) {
     this.canvasHandler = canvasHandler;
-    this.colorHandler = colorHandler;
     this.setupDrawingEventListeners();
   }
 
@@ -35,7 +34,7 @@ class DrawingHandler {
     this.currentPath.push({
       x: canvasMouseX,
       y: canvasMouseY,
-      color: this.colorHandler.currentColor,
+      color: this.canvasHandler.colorHandler.currentColor,
       brushSize: this.canvasHandler.brushHandler.currentBrushSize,
     });
 
@@ -55,8 +54,8 @@ class DrawingHandler {
 
     // Set brush styling based on whether eraser or brush is checked
     const color = this.canvasHandler.eraserCheckbox.checked
-      ? this.colorHandler.bgColorPicker.value
-      : this.colorHandler.currentColor;
+      ? this.canvasHandler.colorHandler.bgColorPicker.value
+      : this.canvasHandler.colorHandler.currentColor;
 
     this.canvasHandler.brushHandler.setBrushStyling(
       color,

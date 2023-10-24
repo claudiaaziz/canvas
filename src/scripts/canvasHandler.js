@@ -14,10 +14,7 @@ class CanvasHandler {
 
     this.colorHandler = new ColorHandler(this);
     this.brushHandler = new BrushHandler(this);
-    this.drawingHandler = new DrawingHandler(
-      this,
-      this.colorHandler
-    );
+    this.drawingHandler = new DrawingHandler(this);
   }
 
   // setting up the canvas
@@ -135,7 +132,7 @@ class CanvasHandler {
     tempCtx.fillStyle = this.canvas.style.backgroundColor;
     tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
 
-    // draw the existing canvas content on top of the background 
+    // draw the existing canvas content on top of the background
     tempCtx.drawImage(this.canvas, 0, 0);
 
     // get the data URL of the temp canvas
