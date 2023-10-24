@@ -1,9 +1,8 @@
 class BrushHandler {
-  // dotted brush, glitter brush?
   constructor(canvasHandler, colorHandler) {
     this.canvasHandler = canvasHandler;
-    this.colorHandler = colorHandler
-    this.setupBrushSize()
+    this.colorHandler = colorHandler;
+    this.setupBrushSize();
   }
 
   setupBrushSize() {
@@ -25,6 +24,7 @@ class BrushHandler {
     this.currentBrushSize = parseInt(this.brushSizeInput.value);
     this.setBrushStyling();
   }
+  // dotted brush, glitter brush?
 }
 
 export default BrushHandler;

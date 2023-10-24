@@ -1,10 +1,10 @@
 class DrawingHandler {
   constructor(canvasHandler, colorHandler, brushHandler) {
-    this.canvasHandler = canvasHandler
-    this.canvas = this.canvasHandler.canvas
-    this.colorHandler = colorHandler
-    this.brushHandler = brushHandler
-    this.setupDrawingEventListeners()
+    this.canvasHandler = canvasHandler;
+    this.canvas = this.canvasHandler.canvas;
+    this.colorHandler = colorHandler;
+    this.brushHandler = brushHandler;
+    this.setupDrawingEventListeners();
   }
 
   setupDrawingEventListeners() {
@@ -60,7 +60,10 @@ class DrawingHandler {
       ? this.colorHandler.bgColorPicker.value
       : this.colorHandler.currentColor;
 
-    this.brushHandler.setBrushStyling(color, this.brushHandler.currentBrushSize);
+    this.brushHandler.setBrushStyling(
+      color,
+      this.brushHandler.currentBrushSize
+    );
 
     // draw the line on the canvas
     this.canvasHandler.ctx.stroke();
@@ -75,7 +78,8 @@ class DrawingHandler {
   }
 
   stopDrawing() {
-    if (this.canvasHandler.eraserCheckbox.checked) this.currentPath.isErase = true;
+    if (this.canvasHandler.eraserCheckbox.checked)
+      this.currentPath.isErase = true;
     if (this.isDrawing) {
       this.canvasHandler.drawnPaths.push(this.currentPath); // if currently drawing, save the current path to the stack (for undo feature)
       this.isDrawing = false;
@@ -83,4 +87,4 @@ class DrawingHandler {
   }
 }
 
-export default DrawingHandler
+export default DrawingHandler;
