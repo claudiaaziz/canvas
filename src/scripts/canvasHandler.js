@@ -13,11 +13,10 @@ class CanvasHandler {
     this.setupDownloadBtn();
 
     this.colorHandler = new ColorHandler(this);
-    this.brushHandler = new BrushHandler(this, this.colorHandler);
+    this.brushHandler = new BrushHandler(this);
     this.drawingHandler = new DrawingHandler(
       this,
-      this.colorHandler,
-      this.brushHandler
+      this.colorHandler
     );
   }
 

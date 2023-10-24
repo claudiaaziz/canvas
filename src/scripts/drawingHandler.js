@@ -1,17 +1,15 @@
 class DrawingHandler {
-  constructor(canvasHandler, colorHandler, brushHandler) {
+  constructor(canvasHandler, colorHandler) {
     this.canvasHandler = canvasHandler;
-    this.canvas = this.canvasHandler.canvas;
     this.colorHandler = colorHandler;
-    this.brushHandler = brushHandler;
     this.setupDrawingEventListeners();
   }
 
   setupDrawingEventListeners() {
-    this.canvas.addEventListener("mousedown", (e) => this.startDrawing(e));
-    this.canvas.addEventListener("mousemove", (e) => this.draw(e));
-    this.canvas.addEventListener("mouseup", () => this.stopDrawing());
-    this.canvas.addEventListener("mouseout", () => this.stopDrawing());
+    this.canvasHandler.canvas.addEventListener("mousedown", (e) => this.startDrawing(e));
+    this.canvasHandler.canvas.addEventListener("mousemove", (e) => this.draw(e));
+    this.canvasHandler.canvas.addEventListener("mouseup", () => this.stopDrawing());
+    this.canvasHandler.canvas.addEventListener("mouseout", () => this.stopDrawing());
   }
 
   // // drawing actions
@@ -24,8 +22,8 @@ class DrawingHandler {
     }
 
     // calculate the adjusted mouse coordinates relative to the canvas
-    const canvasMouseX = e.clientX - this.canvas.offsetLeft;
-    const canvasMouseY = e.clientY - this.canvas.offsetTop;
+    const canvasMouseX = e.clientX - this.canvasHandler.canvas.offsetLeft;
+    const canvasMouseY = e.clientY - this.canvasHandler.canvas.offsetTop;
 
     // begin a new path in the canvas ctx & move to initial drawing pos
     this.canvasHandler.ctx.beginPath();
@@ -38,7 +36,7 @@ class DrawingHandler {
       x: canvasMouseX,
       y: canvasMouseY,
       color: this.colorHandler.currentColor,
-      brushSize: this.brushHandler.currentBrushSize,
+      brushSize: this.canvasHandler.brushHandler.currentBrushSize,
     });
 
     // draw a dot at the starting point
@@ -49,8 +47,8 @@ class DrawingHandler {
     if (!this.isDrawing) return;
 
     // calculate the adjusted mouse coordinates relative to the canvas
-    const mouseX = e.clientX - this.canvas.offsetLeft;
-    const mouseY = e.clientY - this.canvas.offsetTop;
+    const mouseX = e.clientX - this.canvasHandler.canvas.offsetLeft;
+    const mouseY = e.clientY - this.canvasHandler.canvas.offsetTop;
 
     // connect the current drawing position to the new position
     this.canvasHandler.ctx.lineTo(mouseX, mouseY);
@@ -60,9 +58,9 @@ class DrawingHandler {
       ? this.colorHandler.bgColorPicker.value
       : this.colorHandler.currentColor;
 
-    this.brushHandler.setBrushStyling(
+    this.canvasHandler.brushHandler.setBrushStyling(
       color,
-      this.brushHandler.currentBrushSize
+      this.canvasHandler.brushHandler.currentBrushSize
     );
 
     // draw the line on the canvas
@@ -73,7 +71,7 @@ class DrawingHandler {
       x: mouseX,
       y: mouseY,
       color: color,
-      brushSize: this.brushHandler.currentBrushSize,
+      brushSize: this.canvasHandler.brushHandler.currentBrushSize,
     });
   }
 
