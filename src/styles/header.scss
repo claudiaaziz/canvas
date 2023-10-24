@@ -18,5 +18,9 @@ header h1 {
 
 .links img {
   height: 45px;
+  transition: transform 0.3s ease-in-out;
 }
 
+.links img:hover {
+  transform: scale(1.1);
+}
