@@ -1,6 +1,7 @@
 import BrushHandler from "./brushHandler";
 import ColorHandler from "./colorHandler";
 import DrawingHandler from "./drawingHandler";
+import DownloadHandler from "./downloadHandler";
 
 class CanvasHandler {
   constructor() {
@@ -10,11 +11,11 @@ class CanvasHandler {
     this.setupUndoBtn();
     this.setupRedoBtn();
     this.setupClearBtn();
-    this.setupDownloadBtn();
 
+    this.drawingHandler = new DrawingHandler(this);
     this.colorHandler = new ColorHandler(this);
     this.brushHandler = new BrushHandler(this);
-    this.drawingHandler = new DrawingHandler(this);
+    this.downloadHandler = new DownloadHandler(this);
   }
 
   // setting up the canvas
@@ -54,11 +55,6 @@ class CanvasHandler {
     this.redoStack = [];
     this.redoBtn = document.getElementById("redo");
     this.redoBtn.addEventListener("click", () => this.redo());
-  }
-
-  setupDownloadBtn() {
-    this.downloadBtn = document.getElementById("download");
-    this.downloadBtn.addEventListener("click", () => this.download());
   }
 
   // btn actions
@@ -119,32 +115,6 @@ class CanvasHandler {
       // redraw all paths with the correct color
       this.drawnPaths.forEach((path) => this.redrawPath(path));
     }
-  }
-
-  download() {
-    // create a temp canvas to preserve the background (wo this the bg would be transparent)
-    const tempCanvas = document.createElement("canvas");
-    const tempCtx = tempCanvas.getContext("2d");
-    tempCanvas.width = this.canvas.width;
-    tempCanvas.height = this.canvas.height;
-
-    // set the background color on the temp canvas
-    tempCtx.fillStyle = this.canvas.style.backgroundColor;
-    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-
-    // draw the existing canvas content on top of the background
-    tempCtx.drawImage(this.canvas, 0, 0);
-
-    // get the data URL of the temp canvas
-    const dataUrl = tempCanvas.toDataURL("image/png");
-
-    // create a link ele for download
-    const link = document.createElement("a");
-    link.href = dataUrl;
-    link.download = "canvas.png";
-
-    // trigger the download
-    link.click();
   }
 }
 
