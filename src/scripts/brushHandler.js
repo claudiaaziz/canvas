@@ -1,7 +1,6 @@
 class BrushHandler {
-  constructor(canvasHandler, colorHandler) {
+  constructor(canvasHandler) {
     this.canvasHandler = canvasHandler;
-    this.colorHandler = colorHandler;
     this.setupBrushSize();
   }
 
@@ -12,7 +11,7 @@ class BrushHandler {
   }
 
   setBrushStyling(
-    color = this.colorHandler.currentColor,
+    color = this.canvasHandler.colorHandler.currentColor,
     brushSize = this.currentBrushSize
   ) {
     this.canvasHandler.ctx.lineCap = "round";
