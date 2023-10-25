@@ -1,58 +1,65 @@
 # Canvas
-Canvas is a drawing app that allows users to create digital art through a variety of features, including an expansive color palette, brush types/ sizes/ patterns, and more!
+Canvas is a drawing app that provides a digital canvas for creating art. It includes tools such as an extensive color palette for both the brush and background, an eraser, size ranges for the brush and eraser, as well as convenient undo, redo, and clear buttons.
 
-## In Canvas, users will be able to:
-- Choose from a palette of colors via a color picker or color buttons.
-- Utilize different brush types or patterns, such as a small brush, larger brush, dotted brush, or a glitter effect.
-- Undo their actions after releasing the mouse.
-- Utilize simple shapes.
-- Clear the canvas.
+## Functionality & MVPs
+### In Canvas, users can:
+- **Draw Freely:** Utilize a brush tool for freehand drawing.
+- **Color Selection:** Pick and change colors seamlessly with a color picker.
+- **Tool Variety:** Choose between brush, eraser, and background (paint bucket) tools.
+- **Size Control:** Adjust the size of the brush and eraser using a slider.
+- **Undo and Redo:** Easily undo and redo actions for precise editing.
 
-## In addition, this project will include:
-- A production README
+## Additional Features
+- **Download Image:** Save your masterpiece with a download button.
+- **Responsive Design:** Ensure a user-friendly experience on various devices.
 
 ## Wireframe:
 ![wireframe](./assets/wireframe.png)
-- Nav Bar
-  - Displays "Canvas"
-  - Links to GitHub repo for this project & my LinkedIn
-- Canvas takes up the majority of the screen
-- Bottom Section Contains:
-  - Color Picker (for brush & background color)
-  - Icons for brush (selected by default), eraser, background color
-  - Size slider for brush & eraser
-  - Undo, redo and clear button
-  - Predefined Shape Selector
+- **Nav Bar:** Displays "Canvas" in HTML headings and links to this project's GitHub repo and my LinkedIn.
+- **Canvas Section:** Takes up the majority of the screen for drawing.
+- **Bottom Section:** Contains color picker, tool icons, size slider, and undo/redo/clear/download buttons.
 
 ## Technologies, Libraries, APIs
+Canvas leverages the following technologies:
 - The Canvas API to render the canvas.
 - Webpack to bundle and transpile the source JavaScript code.
 - npm to manage project dependencies.
+- **Pickr Library:** Powering the color picker functionality.
 
 ## Implementation Timeline
 - **Friday Afternoon & Weekend:**
   - Setup project, including getting webpack up and running.
+  - Create canvas, brush, color classes.
   - Get canvas to show up on the screen.
-  - Research Canvas, how to make a circle appear, and implement drawing functionality when the user clicks on the page.
-  - Research how to utilize the color picker.
-  - Add a tbd amount of predefined color buttons.
-  - Research how to create different brush types (small, large), dotted brush.
-  - Research how to undo users' actions after the release of the mouse.
-  - Research how to clear the canvas.
+  - Research and implement drawing functionality.
+  - Add color picker 
+  - Implement undo and redo features.
+  - Research and implement canvas clearing.
+  - Add redo feature.
+  - Research and implement different brush sizes.
 
 - **Monday:**
-  - Research how to create predefined simple shapes (circle, square, star) and implement them in a select tag.
+  - Research and implement eraser functionality.
+  - Create brush and eraser buttons.
+  - Link slider to both brush and eraser.
+  - Add download image button.
 
-- **Tuesday & Wednesday:**
-  - If everything above is done, work on adding bonus ideas.
-  - Research other brush designs and implement custom brush effects (like glitter effect).
-  - Improve CSS.
-  - Custom Backgrounds: Allow users to set a custom background or choose from a variety of backgrounds to paint on.
-  - Create a feature to save drawings/create a gallery. Users can share their art or download it.
-  - Add media queries.
-  - Add the ability to add text or import images onto the canvas.
+- **Tuesday**
+  - Refine UI appearance.
+  - Add canvas title.
+  - Add icons for undo, redo, clear, and download.
+  - Add navigation links.
+
+- **Wednesday**
+  - Research how to change the slider line color dynamically with the current color.
+  - Research CSS animations to have brush icons floating around in the background at the top.
+  - Explore alternative brush designs and develop custom brush effects, such as glitter, gradients, patterns, and textures.
+  - Implement Custom Backgrounds feature: Allow users to set a custom background or choose from a variety of backgrounds to draw on.
+  - Create a gallery feature for users to showcase and share their art.
+  - Add media queries for improved responsiveness.
+  - Enable the ability to add text or import images onto the canvas.
+  - Implement Opacity Control for the colors.
+  - Introduce a dotted brush option.
 
 - **Thursday Morning:**
-  - Deploy to GitHub pages.
   - Bonus: Rewrite this proposal as a production README.
-  - Bonus: Improve CSS.
