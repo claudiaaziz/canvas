@@ -2,7 +2,7 @@
 Canvas is a drawing app that provides a digital canvas for creating art. It includes tools such as an extensive color palette for both the brush and background, an eraser, size ranges for the brush and eraser, as well as convenient undo, redo, and clear buttons.
 
 ## Functionality & MVPs
-### In Canvas, users can:
+### In Canvas, users are able to:
 - **Draw Freely:** Utilize a brush tool for freehand drawing.
 - **Color Selection:** Pick and change colors seamlessly with a color picker.
 - **Tool Variety:** Choose between brush, eraser, and background (paint bucket) tools.
@@ -10,21 +10,21 @@ Canvas is a drawing app that provides a digital canvas for creating art. It incl
 - **Undo and Redo:** Easily undo and redo actions for precise editing.
 
 ## Additional Features
-- **Download Image:** Save your masterpiece with a download button.
+- **Download Image:** Save your canvas with a download button.
 - **Responsive Design:** Ensure a user-friendly experience on various devices.
 
 ## Wireframe:
 ![wireframe](./assets/wireframe.png)
 - **Nav Bar:** Displays "Canvas" in HTML headings and links to this project's GitHub repo and my LinkedIn.
 - **Canvas Section:** Takes up the majority of the screen for drawing.
-- **Bottom Section:** Contains color picker, tool icons, size slider, and undo/redo/clear/download buttons.
+- **Bottom Section:** Contains color picker, tool icons, size slider, and undo/ redo/ clear/ download buttons.
 
 ## Technologies, Libraries, APIs
 Canvas leverages the following technologies:
 - The Canvas API to render the canvas.
 - Webpack to bundle and transpile the source JavaScript code.
 - npm to manage project dependencies.
-- **Pickr Library:** Powering the color picker functionality.
+- Pickr Library for color picker functionality.
 
 ## Implementation Timeline
 - **Friday Afternoon & Weekend:**
