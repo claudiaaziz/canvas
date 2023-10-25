@@ -52,7 +52,7 @@ class DrawingHandler {
     this.canvasHandler.ctx.lineTo(mouseX, mouseY);
 
     // Set brush styling based on whether eraser or brush is checked
-    const color = this.canvasHandler.eraserCheckbox.checked
+    const color = this.canvasHandler.eraseAndClearHandler.eraserCheckbox.checked
       ? this.canvasHandler.colorHandler.bgColorPicker.value
       : this.canvasHandler.colorHandler.currentColor;
 
@@ -74,7 +74,7 @@ class DrawingHandler {
   }
 
   stopDrawing() {
-    if (this.canvasHandler.eraserCheckbox.checked)
+    if (this.canvasHandler.eraseAndClearHandler.eraserCheckbox.checked)
       this.currentPath.isErase = true;
     if (this.isDrawing) {
       this.canvasHandler.undoAndRedoHandler.drawnPaths.push(this.currentPath); // if currently drawing, save the current path to the stack (for undo feature)

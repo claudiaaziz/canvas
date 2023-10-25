@@ -22,7 +22,7 @@ class ColorHandler {
       () => {
         const drawnPaths = this.canvasHandler.undoAndRedoHandler.drawnPaths;
         const redoStack = this.canvasHandler.undoAndRedoHandler.redoStack;
-        this.canvasHandler.clear()
+        this.canvasHandler.eraseAndClearHandler.clear();
         this.canvasHandler.undoAndRedoHandler.drawnPaths = drawnPaths;
         this.canvasHandler.undoAndRedoHandler.redoStack = redoStack;
         this.canvasHandler.undoAndRedoHandler.drawnPaths.forEach((path) =>
