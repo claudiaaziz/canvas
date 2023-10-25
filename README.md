@@ -2,7 +2,7 @@
 Canvas is a drawing app that provides a digital canvas for creating art. It includes tools such as an extensive color palette for both the brush and background, an eraser, size ranges for the brush and eraser, as well as convenient undo, redo, and clear buttons.
 
 ## Functionality & MVPs
-### In Canvas, users are able to:
+### In [Canvas](https://claudiaaziz.github.io/canvas/), users are able to:
 - **Draw Freely:** Utilize a brush tool for freehand drawing.
 - **Color Selection:** Pick and change colors seamlessly with a color picker.
 - **Tool Variety:** Choose between brush, eraser, and background (paint bucket) tools.
