@@ -62,4 +62,4 @@ Canvas leverages the following technologies:
   - Introduce a dotted brush option.
 
 - **Thursday Morning:**
-  - Bonus: Rewrite this proposal as a production README.
+  - Rewrite this proposal as a production README.

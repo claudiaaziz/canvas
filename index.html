@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- pickr -->
+  <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr@1.8.1/dist/pickr.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr@1.8.1/dist/themes/classic.min.css" />
+
   <link rel="stylesheet" href="./dist/main.css" />
   <script src="./dist/main.js" defer></script>
   <title>Canvas</title>
@@ -32,9 +36,8 @@
     <button id="undo"><img src="assets/menu icons/undo-btn.png" alt=""></button>
     <button id="redo"><img src="assets/menu icons/redo-btn.png" alt=""></button>
     <!-- color -->
-    <input type="color" id="color-picker" value="#FFFFFF">
-    <input type="color" id="background-color-picker" value="#FFFFFF">
-    <label for="background-color-picker">Bg Color</label>
+    <div id="color-picker" class="pickr"></div>
+    <!-- <input type="color" id="color-picker" value="#FFFFFF"> -->
     <!-- tools -->
     <input type="range" id="size-slider" min="1" max="30" value="5">
     <input type="radio" id="brush" name="tool" checked>
