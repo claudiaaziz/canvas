@@ -14,24 +14,12 @@
 button {
   background-color: pink;
   color: white;
+  font-size: 1em;
   padding: 10px;
   border: none;
   border-radius: 5px;
-  height: 45px;
+  height: 50px;
   cursor: pointer;
-}
-
-.pcr-button {
-  display: none;
-}
-
-.pcr-app {
-  background-color: transparent;
-  margin-left: -75px;
-}
-
-.pcr-app[data-theme=classic] {
-  padding: 0
 }
 
 button img {
@@ -43,26 +31,25 @@ button:hover {
   background-color: black;
 }
 
-// tools
-input[type="radio"] {
+// color picker
+.pcr-button {
   display: none;
 }
 
-input[type="radio"]+label img {
-  height: 45px;
-  width: 45px;
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
+.pcr-app {
+  background-color: transparent;
+  margin-left: -75px;
+  margin-right: -20px;
 }
 
-input[type="radio"]+label img:hover {
-  transform: scale(1.1);
+.pcr-app[data-theme=classic] {
+  padding: 0
 }
 
 // size slider
 input[type="range"] {
   -webkit-appearance: none;
-  height: 8px;
+  height: 12px;
   width: 150px;
   background: linear-gradient(to right, rgb(215, 190, 208), pink);
   border-radius: 5px;
@@ -72,10 +59,28 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   border-radius: 50%;
   background: white;
   cursor: pointer;
 }
+
+// tools
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]+label img {
+  height: 50px;
+  width: 50px;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+input[type="radio"]+label img:hover {
+  transform: scale(1.1);
+}
+
+
 
