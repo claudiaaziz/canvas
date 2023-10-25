@@ -21,12 +21,11 @@ class CanvasHandler {
   setupCanvas() {
     this.canvas = document.getElementById("canvas");
     this.ctx = this.canvas.getContext("2d");
-    this.isDrawing = false;
   }
 
   setupCanvasProportions() {
     const topMargin = 100;
-    const bottomMargin = 100;
+    const bottomMargin = 140;
 
     this.canvas.style.position = "absolute";
     this.canvas.style.top = topMargin + "px";

@@ -5,11 +5,16 @@ class BrushHandler {
   }
 
   setupBrushSize() {
+    this.currentBrushSize = 5;
     this.brushSizeInput = document.getElementById("size-slider");
     this.brushSizeInput.addEventListener("input", () => this.updateBrushSize());
-    this.currentBrushSize = 5;
   }
 
+  updateBrushSize() {
+    this.currentBrushSize = parseInt(this.brushSizeInput.value);
+    this.setBrushStyling();
+  }
+  
   setBrushStyling(
     color = this.canvasHandler.colorHandler.currentColor,
     brushSize = this.currentBrushSize
@@ -17,11 +22,6 @@ class BrushHandler {
     this.canvasHandler.ctx.lineCap = "round";
     this.canvasHandler.ctx.lineWidth = brushSize;
     this.canvasHandler.ctx.strokeStyle = color;
-  }
-
-  updateBrushSize() {
-    this.currentBrushSize = parseInt(this.brushSizeInput.value);
-    this.setBrushStyling();
   }
 }
 

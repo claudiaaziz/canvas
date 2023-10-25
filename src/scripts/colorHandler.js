@@ -11,14 +11,14 @@ class ColorHandler {
     this.brushColorPicker = Pickr.create({
       el: "#color-picker",
       theme: "classic",
+      inline: true,
+      showAlways: true,
       default: "#ECD1E2",
       components: {
         preview: true,
         hue: true,
       },
     });
-    // have the color picker be open immediately
-    this.brushColorPicker.show();
   }
 
   setupColorHandling() {
@@ -28,14 +28,12 @@ class ColorHandler {
     this.brushColorPicker.on("change", (color) => {
       const selectedMode = this.getSelectedMode();
       if (selectedMode === "background-color-pickr") {
-        this.bgColor = color.toHEXA().toString();
-        this.bgColorChange()
-      } else if (selectedMode === "brush") {
-        this.currentColor = color.toHEXA().toString();
-        this.canvasHandler.brushHandler.setBrushStyling(
-          color.toHEXA().toString()
-        );
-      } else if (selectedMode === "eraser") {
+        this.bgDebounce = setTimeout(() => {
+          this.bgDebounce = undefined;
+          this.bgColor = color.toHEXA().toString();
+          this.bgColorChange();
+        }, 300);
+      } else {
         this.currentColor = color.toHEXA().toString();
         this.canvasHandler.brushHandler.setBrushStyling(
           color.toHEXA().toString()
@@ -47,6 +45,7 @@ class ColorHandler {
   bgColorChange() {
     const drawnPaths = this.canvasHandler.undoAndRedoHandler.drawnPaths;
     const redoStack = this.canvasHandler.undoAndRedoHandler.redoStack;
+    
     this.canvasHandler.eraseAndClearHandler.clear();
     this.canvasHandler.undoAndRedoHandler.drawnPaths = drawnPaths;
     this.canvasHandler.undoAndRedoHandler.redoStack = redoStack;
