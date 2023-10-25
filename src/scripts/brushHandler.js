@@ -23,7 +23,6 @@ class BrushHandler {
     this.currentBrushSize = parseInt(this.brushSizeInput.value);
     this.setBrushStyling();
   }
-  // dotted brush, glitter brush?
 }
 
 export default BrushHandler;

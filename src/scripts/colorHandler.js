@@ -1,7 +1,7 @@
 class ColorHandler {
   constructor(canvasHandler) {
-    this.setupColorHandling()
     this.canvasHandler = canvasHandler
+    this.setupColorHandling()
   }
 
   setupColorHandling() {
@@ -9,13 +9,14 @@ class ColorHandler {
 
     // if a brush color has been selected..
     this.brushColorPicker = document.getElementById("color-picker");
-
     this.brushColorPicker.addEventListener("input", () => {
       this.currentColor = this.brushColorPicker.value;
     });
 
     // if a bg color has been selected..
     this.bgColorPicker = document.getElementById("background-color-picker");
+
+    // for erase action
     this.bgColorPicker.addEventListener(
       "input",
       () => {
