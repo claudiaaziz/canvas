@@ -20,12 +20,14 @@ class ColorHandler {
     this.bgColorPicker.addEventListener(
       "input",
       () => {
-        const drawnPaths = this.canvasHandler.drawnPaths
-        const redoStack = this.canvasHandler.redoStack
+        const drawnPaths = this.canvasHandler.undoAndRedoHandler.drawnPaths;
+        const redoStack = this.canvasHandler.undoAndRedoHandler.redoStack;
         this.canvasHandler.clear()
-        this.canvasHandler.drawnPaths = drawnPaths
-        this.canvasHandler.redoStack = redoStack
-        drawnPaths.forEach((path) => this.canvasHandler.redrawPath(path));
+        this.canvasHandler.undoAndRedoHandler.drawnPaths = drawnPaths;
+        this.canvasHandler.undoAndRedoHandler.redoStack = redoStack;
+        this.canvasHandler.undoAndRedoHandler.drawnPaths.forEach((path) =>
+          this.canvasHandler.undoAndRedoHandler.redrawPath(path)
+        );
         this.canvasHandler.canvas.style.backgroundColor = this.bgColorPicker.value;
       }
     );

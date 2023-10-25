@@ -78,7 +78,7 @@ class DrawingHandler {
     if (this.canvasHandler.eraserCheckbox.checked)
       this.currentPath.isErase = true;
     if (this.isDrawing) {
-      this.canvasHandler.drawnPaths.push(this.currentPath); // if currently drawing, save the current path to the stack (for undo feature)
+      this.canvasHandler.undoAndRedoHandler.drawnPaths.push(this.currentPath); // if currently drawing, save the current path to the stack (for undo feature)
       this.isDrawing = false;
     }
   }
