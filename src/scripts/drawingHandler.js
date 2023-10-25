@@ -53,7 +53,7 @@ class DrawingHandler {
 
     // Set brush styling based on whether eraser or brush is checked
     const color = this.canvasHandler.eraseAndClearHandler.eraserCheckbox.checked
-      ? this.canvasHandler.colorHandler.bgColorPicker.value
+      ? this.canvasHandler.colorHandler.bgColor
       : this.canvasHandler.colorHandler.currentColor;
 
     this.canvasHandler.brushHandler.setBrushStyling(

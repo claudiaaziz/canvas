@@ -7,7 +7,7 @@ class ColorHandler {
     this.setupColorHandling();
   }
 
-  setupColorPicker () {
+  setupColorPicker() {
     this.brushColorPicker = Pickr.create({
       el: "#color-picker",
       theme: "classic",
@@ -23,10 +23,46 @@ class ColorHandler {
 
   setupColorHandling() {
     this.currentColor = "black";
+    this.bgColor = "#FFFFFF";
     // color change event for brush color
     this.brushColorPicker.on("change", (color) => {
-      this.currentColor = color.toHEXA().toString()
+      const selectedMode = this.getSelectedMode();
+      if (selectedMode === "background-color-pickr") {
+        this.bgColor = color.toHEXA().toString();
+        this.bgColorChange()
+      } else if (selectedMode === "brush") {
+        this.currentColor = color.toHEXA().toString();
+        this.canvasHandler.brushHandler.setBrushStyling(
+          color.toHEXA().toString()
+        );
+      } else if (selectedMode === "eraser") {
+        this.currentColor = color.toHEXA().toString();
+        this.canvasHandler.brushHandler.setBrushStyling(
+          color.toHEXA().toString()
+        );
+      }
     });
+  }
+
+  bgColorChange() {
+    const drawnPaths = this.canvasHandler.undoAndRedoHandler.drawnPaths;
+    const redoStack = this.canvasHandler.undoAndRedoHandler.redoStack;
+    this.canvasHandler.eraseAndClearHandler.clear();
+    this.canvasHandler.undoAndRedoHandler.drawnPaths = drawnPaths;
+    this.canvasHandler.undoAndRedoHandler.redoStack = redoStack;
+    drawnPaths.forEach((path) =>
+      this.canvasHandler.undoAndRedoHandler.redrawPath(path)
+    );
+    this.canvasHandler.canvas.style.backgroundColor = this.bgColor;
+  }
+
+  getSelectedMode() {
+    const radioButtons = document.getElementsByName("tool");
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        return radioButton.id;
+      }
+    }
   }
 }
 

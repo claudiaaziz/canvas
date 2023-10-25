@@ -45,7 +45,7 @@ class UndoAndRedoHandler {
         this.canvasHandler.ctx.lineTo(point.x, point.y);
 
         // set brush styling based on point clr & brush size
-        if (path.isErase) point.color = this.canvasHandler.colorHandler.bgColorPicker.value;
+        if (path.isErase) point.color = this.canvasHandler.colorHandler.bgColor;
         this.canvasHandler.brushHandler.setBrushStyling(point.color, point.brushSize);
 
         this.canvasHandler.ctx.stroke();
