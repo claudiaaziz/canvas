@@ -11,7 +11,6 @@ class DrawingHandler {
     this.canvasHandler.canvas.addEventListener("mouseout", () => this.stopDrawing());
   }
 
-  // // drawing actions
   startDrawing(e) {
     if (!this.isDrawing) {
       // clear the stacks when a new drawing begins
