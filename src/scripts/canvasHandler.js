@@ -2,7 +2,7 @@ import DrawingHandler from "./drawingHandler";
 import ColorHandler from "./colorHandler";
 import BrushHandler from "./brushHandler";
 import EraseAndClearHandler from "./eraseAndClearHandler";
-import UndoAndRedoHandler from "./undoAndRedoHandler";
+import RedoAndUndoHandler from "./redoAndUndoHandler";
 import DownloadHandler from "./downloadHandler";
 
 class CanvasHandler {
@@ -14,7 +14,7 @@ class CanvasHandler {
     this.colorHandler = new ColorHandler(this);
     this.brushHandler = new BrushHandler(this);
     this.eraseAndClearHandler = new EraseAndClearHandler(this);
-    this.undoAndRedoHandler = new UndoAndRedoHandler(this);
+    this.RedoAndUndoHandler = new RedoAndUndoHandler(this);
     this.downloadHandler = new DownloadHandler(this);
   }
 

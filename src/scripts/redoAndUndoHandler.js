@@ -1,8 +1,8 @@
-class UndoAndRedoHandler {
+class RedoAndUndoHandler {
   constructor(canvasHandler) {
     this.canvasHandler = canvasHandler;
-    this.setupUndoBtn()
-    this.setupRedoBtn()
+    this.setupUndoBtn();
+    this.setupRedoBtn();
   }
 
   setupUndoBtn() {
@@ -18,10 +18,15 @@ class UndoAndRedoHandler {
   }
 
   undo() {
-    // if there are paths in the stack
+    // if there are paths in the stack,
     if (this.drawnPaths.length > 0) {
       // clear canvas (to prep for redraw)
-      this.canvasHandler.ctx.clearRect(0, 0, this.canvasHandler.canvas.width, this.canvasHandler.canvas.height);
+      this.canvasHandler.ctx.clearRect(
+        0,
+        0,
+        this.canvasHandler.canvas.width,
+        this.canvasHandler.canvas.height
+      );
 
       // remove (undo) last drawn path from the stack
       const undonePath = this.drawnPaths.pop();
@@ -46,7 +51,10 @@ class UndoAndRedoHandler {
 
         // set brush styling based on point clr & brush size
         if (path.isErase) point.color = this.canvasHandler.colorHandler.bgColor;
-        this.canvasHandler.brushHandler.setBrushStyling(point.color, point.brushSize);
+        this.canvasHandler.brushHandler.setBrushStyling(
+          point.color,
+          point.brushSize
+        );
 
         this.canvasHandler.ctx.stroke();
       }
@@ -57,7 +65,12 @@ class UndoAndRedoHandler {
     // if there are paths in the redo stack
     if (this.redoStack.length > 0) {
       // clear canvas (to prep for redraw)
-      this.canvasHandler.ctx.clearRect(0, 0, this.canvasHandler.canvas.width, this.canvasHandler.canvas.height);
+      this.canvasHandler.ctx.clearRect(
+        0,
+        0,
+        this.canvasHandler.canvas.width,
+        this.canvasHandler.canvas.height
+      );
 
       // remove (redo) last undone path from the redo stack
       const redonePath = this.redoStack.pop();
@@ -70,4 +83,4 @@ class UndoAndRedoHandler {
   }
 }
 
-export default UndoAndRedoHandler;
+export default RedoAndUndoHandler;

@@ -43,14 +43,14 @@ class ColorHandler {
   }
 
   bgColorChange() {
-    const drawnPaths = this.canvasHandler.undoAndRedoHandler.drawnPaths;
-    const redoStack = this.canvasHandler.undoAndRedoHandler.redoStack;
-    
+    const drawnPaths = this.canvasHandler.RedoAndUndoHandler.drawnPaths;
+    const redoStack = this.canvasHandler.RedoAndUndoHandler.redoStack;
+
     this.canvasHandler.eraseAndClearHandler.clear();
-    this.canvasHandler.undoAndRedoHandler.drawnPaths = drawnPaths;
-    this.canvasHandler.undoAndRedoHandler.redoStack = redoStack;
+    this.canvasHandler.RedoAndUndoHandler.drawnPaths = drawnPaths;
+    this.canvasHandler.RedoAndUndoHandler.redoStack = redoStack;
     drawnPaths.forEach((path) =>
-      this.canvasHandler.undoAndRedoHandler.redrawPath(path)
+      this.canvasHandler.RedoAndUndoHandler.redrawPath(path)
     );
     this.canvasHandler.canvas.style.backgroundColor = this.bgColor;
   }

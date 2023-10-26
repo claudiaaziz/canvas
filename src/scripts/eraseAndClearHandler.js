@@ -15,10 +15,15 @@ class EraseAndClearHandler {
   }
 
   clear() {
-    this.canvasHandler.ctx.clearRect(0, 0, this.canvasHandler.canvas.width, this.canvasHandler.canvas.height);
+    this.canvasHandler.ctx.clearRect(
+      0,
+      0,
+      this.canvasHandler.canvas.width,
+      this.canvasHandler.canvas.height
+    );
     this.canvasHandler.canvas.style.backgroundColor = "white";
-    this.canvasHandler.undoAndRedoHandler.redoStack = [];
-    this.canvasHandler.undoAndRedoHandler.drawnPaths = [];
+    this.canvasHandler.RedoAndUndoHandler.redoStack = [];
+    this.canvasHandler.RedoAndUndoHandler.drawnPaths = [];
   }
 }
 

@@ -5,10 +5,18 @@ class DrawingHandler {
   }
 
   setupDrawingEventListeners() {
-    this.canvasHandler.canvas.addEventListener("mousedown", (e) => this.startDrawing(e));
-    this.canvasHandler.canvas.addEventListener("mousemove", (e) => this.draw(e));
-    this.canvasHandler.canvas.addEventListener("mouseup", () => this.stopDrawing());
-    this.canvasHandler.canvas.addEventListener("mouseout", () => this.stopDrawing());
+    this.canvasHandler.canvas.addEventListener("mousedown", (e) =>
+      this.startDrawing(e)
+    );
+    this.canvasHandler.canvas.addEventListener("mousemove", (e) =>
+      this.draw(e)
+    );
+    this.canvasHandler.canvas.addEventListener("mouseup", () =>
+      this.stopDrawing()
+    );
+    this.canvasHandler.canvas.addEventListener("mouseout", () =>
+      this.stopDrawing()
+    );
   }
 
   startDrawing(e) {
@@ -77,7 +85,7 @@ class DrawingHandler {
     if (this.canvasHandler.eraseAndClearHandler.eraserCheckbox.checked)
       this.currentPath.isErase = true;
     if (this.isDrawing) {
-      this.canvasHandler.undoAndRedoHandler.drawnPaths.push(this.currentPath); // if currently drawing, save the current path to the stack (for undo feature)
+      this.canvasHandler.RedoAndUndoHandler.drawnPaths.push(this.currentPath); // if currently drawing, save the current path to the stack (for undo feature)
       this.isDrawing = false;
     }
   }
