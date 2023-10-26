@@ -24,7 +24,7 @@ class ColorHandler {
   setupColorHandling() {
     this.currentColor = "black";
     this.bgColor = "#FFFFFF";
-    // color change event for brush color
+    
     this.brushColorPicker.on("change", (color) => {
       const selectedMode = this.getSelectedMode();
       if (selectedMode === "background-color-pickr") {
