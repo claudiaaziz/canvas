@@ -11,11 +11,17 @@
 - **Color Selection:** Pick and change colors seamlessly with a color picker.
 
 ![Color Selection](./assets/readme/color-selection.gif)
-
 - **Tool Variety:** Choose between brush, eraser, and background (paint bucket) tools.
 - **Size Control:** Adjust the size of the brush and eraser using a slider.
 - **Undo and Redo:** Easily undo and redo actions for precise editing.
 - **Download Image:** Save their canvas with a download button.
+
+## Technologies, Libraries, APIs
+Canvas leverages the following technologies:
+- The Canvas API to render the canvas and enable the drawing functionality.
+- Pickr Library for color picker functionality.
+- Webpack to bundle and transpile the source JavaScript code.
+- npm to manage project dependencies.
 
 ## Implementation Details
 
