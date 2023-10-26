@@ -1,13 +1,18 @@
 class Modal {
   constructor() {
+    this.setUpModel()
+    this.showModal();
+  }
+
+  setUpModel() {
     this.modal = document.getElementById("modal");
     this.closeButtons = document.querySelectorAll(".close-button");
-
+    this.helpIcon = document.getElementById("help-icon");
+    
     this.closeButtons.forEach((button) =>
       button.addEventListener("click", () => this.closeModal())
     );
-
-    this.showModal();
+    this.helpIcon.addEventListener("click", () => this.showModal());
   }
 
   showModal = () => {

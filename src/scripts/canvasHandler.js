@@ -24,7 +24,7 @@ class CanvasHandler {
   }
 
   setupCanvasProportions() {
-    const topMargin = 100;
+    const topMargin = 112;
     const bottomMargin = 140;
 
     this.canvas.style.position = "absolute";
