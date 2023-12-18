@@ -17,7 +17,7 @@
 - **Download Image:** Save their canvas with a download button.
 
 ## Technologies, Libraries, APIs
-Canvas leverages the following technologies:
+### Canvas leverages the following technologies:
 - Vanilla JS: Powers interactivity and logic.
 - HTML: Defines the structure and layout of the Canvas app.
 - CSS (Sass): Styles for a visually appealing user experience.
