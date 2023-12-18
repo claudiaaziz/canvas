@@ -18,10 +18,13 @@
 
 ## Technologies, Libraries, APIs
 Canvas leverages the following technologies:
-- The Canvas API to render the canvas and enable the drawing functionality.
-- Pickr Library for color picker functionality.
-- Webpack to bundle and transpile the source JavaScript code.
-- npm to manage project dependencies.
+- Vanilla JS: Powers interactivity and logic.
+- HTML: Defines the structure and layout of the Canvas app.
+- CSS (Sass): Styles for a visually appealing user experience.
+- Canvas API: Renders the canvas and enables drawing functionality.
+- Pickr Library: Facilitates color picking.
+- Webpack: Bundles and transpiles the JavaScript source code.
+- npm: Manages project dependencies.
 
 ## Implementation Details
 
