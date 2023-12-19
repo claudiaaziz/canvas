@@ -8,7 +8,9 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 20px;
-  height: 10%;
+  height: 12%;
+  // max-height: 395.195px;
+  // background-color: red;
 }
 
 button {
@@ -40,6 +42,7 @@ button:hover {
   background-color: transparent;
   margin-left: -75px;
   margin-right: -20px;
+  margin-top: 12px;
 }
 
 .pcr-app[data-theme=classic] {
@@ -81,3 +84,21 @@ input[type="radio"]+label img {
 input[type="radio"]+label img:hover {
   transform: scale(1.1);
 }
+
+// media queries (btn is not opening & closing color picker)
+// @media (max-width: 1300px) {
+//   .pcr-button {
+//       display: block;
+//     }
+
+//   .pcr-app {
+//     background-color: white;
+//     margin-left: 75px;
+//     margin-right: 20px;
+//     margin-bottom: 20px;
+//   }
+
+//   .pcr-app {
+//     padding: 20px
+//   }
+// }

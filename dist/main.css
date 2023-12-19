@@ -196,7 +196,7 @@ header h1 {
   left: 50%;
   transform: translateX(-50%);
   padding: 20px;
-  height: 10%;
+  height: 12%;
 }
 
 button {
@@ -227,6 +227,7 @@ button:hover {
   background-color: transparent;
   margin-left: -75px;
   margin-right: -20px;
+  margin-top: 12px;
 }
 
 .pcr-app[data-theme=classic] {
