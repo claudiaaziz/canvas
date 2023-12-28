@@ -22,7 +22,6 @@ class Modal {
   }
 
   showModal = () => (this.modal.style.display = "flex");
-
   closeModal = () => (this.modal.style.display = "none");
 }
 
