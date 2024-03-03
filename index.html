@@ -9,43 +9,40 @@
   <link rel="stylesheet" href="./dist/main.css" />
   <script src="./dist/main.js" defer></script>
   <title>Canvas</title>
-  <link rel="icon" href="./assets/tab-icon.png" />
+  <link rel="icon" href="./assets/active-brush.png" />
 </head>
 
 <body>
 
-  <header>
+  <div class="navbar">
     <h1>Canvas</h1>
     
-    <nav class="links">
+    <div class="links">
       <button id="help-icon">?</button>
-      <a target="_blank" href="https://github.com/claudiaaziz/canvas"><img
-          src="./assets/nav-icons/github-icon.png" alt="" /></a>
-      <a target="_blank" href="https://www.linkedin.com/in/claudia-aziz-b940b0274"><img
-          src="./assets/nav-icons/linkedin-icon.png" alt="linkedin logo" /></a>
-    </nav>
-  </header>
+      <a target="_blank" href="https://github.com/claudiaaziz/canvas"><img src="./assets/nav-icons/github-icon.png" alt="" /></a>
+      <a target="_blank" href="https://www.linkedin.com/in/claudia-aziz-b940b0274"><img src="./assets/nav-icons/linkedin-icon.png" alt="linkedin logo" /></a>
+    </div>
+  </div>
 
   <canvas id="canvas"></canvas>
 
   <div id="menu">
     <!-- btns -->
     <button id="clear">Clear</button>
-    <button id="undo"><img src="assets/menu icons/undo-btn.png" alt=""></button>
-    <button id="redo"><img src="assets/menu icons/redo-btn.png" alt=""></button>
+    <button id="undo"><img src="assets/menu-icons/undo-btn.png" alt=""></button>
+    <button id="redo"><img src="assets/menu-icons/redo-btn.png" alt=""></button>
     <!-- color -->
     <div id="color-picker" class="pickr"></div>
     <!-- tools -->
     <input type="range" id="size-slider" min="1" max="30" value="5">
     <input type="radio" id="brush" name="tool" checked>
-    <label for="brush" class="tool-icon"><img src="assets/tab-icon.png" alt=""></label>
+    <label for="brush" class="tool-icon"><img src="assets/active-brush.png" alt=""></label>
     <input type="radio" id="background-color-pickr" name="tool">
-    <label for="background-color-pickr" class="tool-icon"><img src="assets/menu icons/inactive-background-color.png"
-        alt=""></label>
+    <label for="background-color-pickr" class="tool-icon"><img src="assets/menu-icons/inactive-background-color.png" alt=""></label>
     <input type="radio" id="eraser" name="tool">
-    <label for="eraser" class="tool-icon"><img src="assets/menu icons/inactive-eraser.png" alt=""></label>
+    <label for="eraser" class="tool-icon"><img src="assets/menu-icons/inactive-eraser.png" alt=""></label>
     <!-- btns -->
-    <button id="download"><img src="assets/menu icons/download-btn.png" alt=""></button>
+    <button id="download"><img src="assets/menu-icons/download-btn.png" alt=""></button>
   </div>
 
     <div id="modal">
@@ -62,8 +59,8 @@
           <li>Save Your Art: Download your canvas</li>
         </ul>
 
-        <button class="close-button">Start Drawing!</button>
-        <button class="close-button">Close</button>
+        <button class="close-modal">Start Drawing!</button>
+        <button class="close-modal">Close</button>
       </div>
     </div>
 

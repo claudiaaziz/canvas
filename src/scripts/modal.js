@@ -6,7 +6,7 @@ class Modal {
 
   setUpModel() {
     this.modal = document.getElementById("modal");
-    this.closeButtons = document.querySelectorAll(".close-button");
+    this.closeButtons = document.querySelectorAll(".close-modal");
     this.helpIcon = document.getElementById("help-icon");
 
     this.closeButtons.forEach((button) =>

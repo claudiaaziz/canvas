@@ -143,14 +143,14 @@ table {
 /*!*****************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss (1) ***!
   \*****************************************************************************************************************************************/
-header {
+.navbar {
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-header h1 {
+.navbar h1 {
   font-family: "Allura", cursive;
   font-size: 4.5em;
   width: 176px;
@@ -176,6 +176,22 @@ header h1 {
 
 .links img:hover {
   transform: scale(1.1);
+}
+
+#help-icon {
+  width: 20px;
+  height: 20px;
+  background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#help-icon:hover {
+  background-color: black;
 }
 
 #canvas {
@@ -326,22 +342,6 @@ input[type=radio] + label img:hover {
 
 #modal-content button:hover {
   background-color: #333;
-}
-
-#help-icon {
-  width: 20px;
-  height: 20px;
-  background-color: rgba(255, 182, 193, 0.9019607843);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#help-icon:hover {
-  background-color: black;
 }
 
 body {
